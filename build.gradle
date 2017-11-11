@@ -1,0 +1,77 @@
+/**
+  * description
+  */
+task hello << {
+ 	println 'hello'
+}
+/**
+ * description
+ */
+// task welcome {
+// 	doLast {
+// 		println 'welcome'
+// 	}
+// }
+
+println hello.name
+println project.hello.name
+
+
+tasks.create(name: 'upper') << {
+	String name = "Sathish"
+	println "Original name: " + name
+	println "All upper case: " + name.toUpperCase()
+}
+
+//now we have the "tasks" collection
+println "name from 'tasks' collection: " + tasks.upper.name
+println "name from array owned by 'tasks': " + tasks['upper'].name
+task (count) << {
+	// it seems that $it is the default iterator 
+	// anything else with the variable and an '->'
+	// then those are declared variables and we need to use it
+	4.times {
+		i -> println "$i "
+	}
+}
+
+// as far as the task name (or) 
+// anything related to the property access
+// we need to do that after the property declaration
+// like we have accessed the count's name below
+// after the count's definition above
+println count.name
+println project.count.name
+
+task ('groovyJDK') << {
+	String name = "Sathish kumar"
+	name.each() {
+		//println (with new line for each char, 
+		//print - you know!! obvious)
+		print "$it"
+	}
+}
+
+/** Property Accessors **/
+/* 
+No matter what the order is.
+getter then setter (or) setter then getter
+You will get the build directory anyways (weird)
+Gradle is liberal!!  hmmm.. 
+*/
+
+//using getter methods
+println project.buildDir
+println getProject().getBuildDir()
+
+//using setter methods
+project.buildDir = '/home/suchithradhanaraj/gradle-sandbox/'
+getProject().setBuildDir('/home/suchithradhanaraj/gradle-sandbox/')
+
+/**
+ * Repositories
+ * @see http://www.gradle.org/docs/current/userguide/userguide_single.html#sec:repositories
+ */
+repositories {
+	println "in a closure"
+}
