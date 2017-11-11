@@ -75,3 +75,35 @@ getProject().setBuildDir('/home/suchithradhanaraj/gradle-sandbox/')
 repositories {
 	println "in a closure"
 }
+
+
+project(':almairah') {
+	task almairahTask
+	// task almairahTask << {
+	// 	println "Almairah welcomes you!!"
+	// }
+}
+// println tasks.getByPath('almairahTask').path
+// println tasks.getByPath(':almairah').path
+println tasks.getByPath(':almairah:almairahTask').path
+println tasks.getByPath('almairah:almairahTask').path
+
+
+//task dependecies
+
+task taskX << {
+	println "taskX"	
+}
+
+/**
+ * description
+ */
+// task taskY(dependsOn: 'taskX') << { // this one is using the 'dependsOn' as a parameter to the task
+task taskY << {
+	println 'taskY'
+}
+
+//(or)
+//this.. this one declaring the dependency by using the task object
+
+taskY.dependsOn taskX
