@@ -136,15 +136,21 @@ taskY.dependsOn {
  * description
  */
 // task copy(type: Copy) {
-task copy(type: Copy) << {
-	includeEmptyDirs=true
+task copy(type: Copy) {
 	description 'Copies the resource directory to the target directory'
 	def fromDir = rootProject.file('res')
 	def intoDir = rootProject.file('target')
-	println fromDir
-	println intoDir
-	// include('**/*.txt','**/*.xml','**/*.properties')
-	// from fromDir
-	// into intoDir
-	// println("description applied")
+	// println fromDir
+	// println intoDir
+	include('**/*.txt','**/*.xml','**/*.properties')
+	from fromDir
+	into intoDir
+	println("description applied")
 }
+
+
+
+
+
+
+
